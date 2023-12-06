@@ -5,11 +5,11 @@ website:
   title: "Brian McNamara Data Analytics Portfolio"
   navbar:
     right:
-      - about.qmd
+      - blogs.qmd
+      - resume.qmd
+      - Resume.pdf
       - icon: github
         href: https://github.com/bmac1313
-      - icon: twitter
-        href: https://twitter.com
       - icon: linkedin
         href: https://www.linkedin.com/in/brianmcgis/
 format:

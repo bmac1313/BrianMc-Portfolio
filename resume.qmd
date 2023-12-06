@@ -1,5 +1,5 @@
 ---
-title: "About Me"
+title: "Resume"
 image: profile.jpg
 about:
   template: jolla
@@ -15,4 +15,13 @@ about:
       href: https://github.com/bmac1313
 ---
 
-About this blog
+---
+title: "Resume"
+output:
+  quarto::quarto_html:
+    self_contained: false
+---
+
+<iframe width="1200" height="1200" src="Resume.pdf">
+
+</iframe>
