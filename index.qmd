@@ -14,6 +14,10 @@ about:
 
 Hi!
 
-This site is for my Data Analytcis studies completed while pursuing my Masters of Science in Advanced Data Analytics with a concentration in Management at the University of North Texas. I previously earned an undergraduate degree in Geography from Texas A&M University. I was born and raised in Texas and enjoy working here as a Consultant in the Geo-spatial Technology industry.
+This site is for my Data Analytcis studies completed while pursuing my Masters of Science in Advanced Data Analytics with a concentration in Management at the University of North Texas. I previously earned an undergraduate degree in Geography from Texas A&M University.
+
+I have over 13 years of GIS experience predominetly in the AEC (Architecture, Engineering and Construction) Industry. My expertise is in data analysis, visualization, project management, management and business.
+
+I was born and raised in Texas and enjoy living and working here in the Austin area as a Consultant in the Geo-spatial Technology industry.
 
 I can be reached at **BrianMcNamara\@my.unt.edu**
