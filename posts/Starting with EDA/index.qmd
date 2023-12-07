@@ -1,0 +1,114 @@
+---
+title: "Top 10 starter EDA functions() in R Studio"
+author: "Brian McNamara"
+date: "2023-12-03"
+categories: [R, code, EDA, visualization]
+image: "image.jpg"
+---
+
+Here, you can see common Exploratory Data Analysis functions used to understand various datasets. We will use the preloaded "mtcars" dataset that is already installed with R Studio.
+
+The "mtcars" dataset is comprised of 32 automobile models for the year 1973 -1974 with charactersits such as fuel consumption, horsepower and much more (1974 US Motor Trend magazine).
+
+It is always best practice to load your libraries upfront, we will use ggplot2 for visualizations and
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+```
+
+1.  Using the *?* within R Studio will showcase details of the dataset for you. This can be used for any function, not just EDA.
+
+    ```{r, echo=FALSE}
+    #ask away!
+    ?mtcars
+    ```
+
+    ![](R1.png)
+
+2.  Load the data via the *data()* command
+
+```{r, echo=FALSE}
+#load data
+data("mtcars")
+```
+
+3.  Examine the number of columns *ncol()* and rows *nrows()* of the dataset. This can help determine if the dataset will need to be subdivided (via the subset function) for further analysis.
+
+```{r, echo=FALSE}
+#rows and columns count
+nrow(mtcars)
+ncol(mtcars)
+```
+
+4.  Seeing there are 32 rows and 11 columns, we can now use the *head()* command to view the first few rows
+
+    ```{r, echo=FALSE}
+    #first few rows
+    head(mtcars)
+
+    ```
+
+5.  While *head()* looks at the first few rows, ***tail()*** looks at the last.
+
+```{r, echo=FALSE}
+#last few rows
+tail(mtcars)
+```
+
+6.  To find the variable type for each use the *str()* function to list each class type (string, integer, double, factor etc)
+
+```{r, echo=FALSE}
+#variable name, type, count and first few observations
+str(mtcars)
+```
+
+7.  To generate the summary statistics of each variable, use the *summary()* function to produce statistics such as Minimum, Maximum, Median, Mean and others.
+
+```{r, echo=FALSE}
+#summary statistics of each variable by variable type
+summary(mtcars)
+```
+
+8.  To view relationships (correlation) between each variable, use the *ggcorrplot()* from the ggplot2 library. Pass the mtcars dataset through the correlation *cor()* generate the visualization.
+
+    Correlation is measured between +1.0 and -1.0 with positive values at 1 representing a perfect linear relationship and negative values at -1 representing a perfect negative linear relationship. A value of 0 means there is no relationship. **Essentially**, look for the bright red and blue squares to find the variables with the greatest correlation.
+
+```{r, echo=FALSE}
+#visualization to find most related variables
+ggcorrplot::ggcorrplot(cor(mtcars))
+```
+
+Looking at the graphic above, you can see wt (weight) and mpg (miles per gallon) have a high negative relationship. Let's use these two for the last couple steps...
+
+9.  A simple histogram *hist()* can help visualize the distribution of the data between the two variables, weight and mpg. Older cars did not have the best mpg!
+
+```{r, echo=FALSE}
+#two histograms!
+hist(mtcars$mpg, main = "Histogram of MPG", xlab = "Miles Per Gallon")
+
+hist(mtcars$wt, main = "Histogram of weight", xlab = "Weight in 1k lbs")
+
+```
+
+10. Using the *plot()* function we can create a scatter plot of the two variables, MPG and Weight.
+
+```{r, echo=FALSE}
+plot(mtcars$wt, mtcars$mpg, main = "Scatter Plot of MPG vs Weight", xlab = "Weight (in 1k lbs)", ylab = "Miles Per Gallon")
+```
+
+Looking at the graph we can see the correlation is negative as the data decreases in MPG as the Weight increases (remember, it was a blue square in the correlation matrix).
+
+11. BONUS! Let's add a trend line comparing the two models...
+
+```{r, echo=FALSE}
+plot(mtcars$wt, mtcars$mpg, main = "Scatter Plot of MPG vs Weight", xlab = "Weight (in 1k lbs)", ylab = "Miles Per Gallon")
+
+# create linear model
+model <- lm(mtcars$mpg ~ mtcars$wt)
+
+# Add a trendline to the scatterplot, color blue to match previous graphic
+abline(model, col = "blue")
+```
+
+That's it! Thanks for reading and give EDA a try on your favorite dataset in R!
