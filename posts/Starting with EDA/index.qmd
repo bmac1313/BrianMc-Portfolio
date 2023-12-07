@@ -6,36 +6,39 @@ categories: [R, code, EDA, visualization]
 image: "image.jpg"
 ---
 
-Here, you can see common Exploratory Data Analysis functions used to understand various datasets. We will use the preloaded "mtcars" dataset that is already installed with R Studio.
+Here, you can see common Exploratory Data Analysis functions used to understand a datasets. We will use the preloaded "mtcars" dataset that is already installed with R Studio.
 
 The "mtcars" dataset is comprised of 32 automobile models for the year 1973 -1974 with charactersits such as fuel consumption, horsepower and much more (1974 US Motor Trend magazine).
 
-It is always best practice to load your libraries upfront, we will use ggplot2 for visualizations and
+**Best Practices**
+
+It is always best practice to load your libraries upfront, we will use ggplot2 for visualizations. The comment (# or hashtag) should be used to help document workflows and explain code in more detail
 
 ```{r echo=TRUE}
+#this is a comment
 
+#load ggplot2 library
 library(ggplot2)
 ```
 
 \
+The steps below will outline a walk through to better understand the mtcars dataset.
 
-1.  Using the *?* within R Studio will showcase details of the dataset for you. This can be used for any function, not just EDA.
+1.  Using the *?* within R Studio will showcase details of the dataset for you. The question mark, *?*, can be used to inspect any function (or preloaded dataset) inside R Studio.
 
     ```{r, echo=TRUE}
-    #ask away!
+    #use the ? to examine the command, such as mtcard dataset in this example
     ?mtcars
     ```
 
     ![](R1.png)
 
-2.  Load the data via the *data()* command
+2.  Load the data via the *data()* command. The mtcars dataset is now loaded within R and ready for EDA.
 
 ```{r echo=TRUE}
 #load data
 data("mtcars")
 ```
-
-\
 
 3.  Examine the number of columns *ncol()* and rows *nrows()* of the dataset. This can help determine if the dataset will need to be subdivided (via the subset function) for further analysis.
 
@@ -45,9 +48,9 @@ nrow(mtcars)
 ncol(mtcars)
 ```
 
-\
+With 32 rows and 11 columns, we can see the dataset is relatively small and is ready for EDA.\
 
-4.  Seeing there are 32 rows and 11 columns, we can now use the *head()* command to view the first few rows
+4.  Usee the *head()* command to view the first few rows
 
     ```{r}
     #first few rows
@@ -57,7 +60,7 @@ ncol(mtcars)
 
     \
 
-5.  While *head()* looks at the first few rows, ***tail()*** looks at the last.
+5.  While *head()* looks at the first few rows, ***tail()*** looks at the last. Take a look at the last few rows.
 
 ```{r}
 #last few rows
@@ -65,6 +68,7 @@ tail(mtcars)
 ```
 
 \
+Now that the overall dataset size has been examined we can dive into it and learn more about the variables.
 
 6.  To find the variable type for each use the *str()* function to list each class type (string, integer, double, factor etc)
 
@@ -113,16 +117,19 @@ plot(mtcars$wt, mtcars$mpg, main = "Scatter Plot of MPG vs Weight", xlab = "Weig
 
 Looking at the graph we can see the correlation is negative as the data decreases in MPG as the Weight increases (remember, it was a blue square in the correlation matrix).
 
-11. **BONUS**! Let's add a trend line comparing the two models...
+11. **BONUS**! Let's add a trend line comparing the two variables. We will use the ggplot function to create a scatterplot and add a smoothed trend line.
 
 ```{r, echo=TRUE}
-plot(mtcars$wt, mtcars$mpg, main = "Scatter Plot of MPG vs Weight", xlab = "Weight (in 1k lbs)", ylab = "Miles Per Gallon")
 
-# create linear model
-model <- lm(mtcars$mpg ~ mtcars$wt)
+ggplot(data = mtcars, mapping = aes(x = mtcars$wt, y = mtcars$mpg)) +
+          geom_point() +
+          geom_smooth() +   
+          xlab("Weight in 1k lbs") +
+          ylab("My Miles per Gallon (MPG)") +
+          ggtitle("mtcars data Weight vs MPG")
 
-# Add a trendline to the scatterplot, color blue to match previous graphic
-abline(model, col = "blue")
+
+
 ```
 
 **That's it!** Thanks for reading and give EDA a try on your favorite dataset in R!
