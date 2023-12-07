@@ -17,6 +17,8 @@ It is always best practice to load your libraries upfront, we will use ggplot2 f
 library(ggplot2)
 ```
 
+\
+
 1.  Using the *?* within R Studio will showcase details of the dataset for you. This can be used for any function, not just EDA.
 
     ```{r, echo=TRUE}
@@ -33,21 +35,27 @@ library(ggplot2)
 data("mtcars")
 ```
 
+\
+
 3.  Examine the number of columns *ncol()* and rows *nrows()* of the dataset. This can help determine if the dataset will need to be subdivided (via the subset function) for further analysis.
 
-```{r, echo=FALSE}
+```{r}
 #rows and columns count
 nrow(mtcars)
 ncol(mtcars)
 ```
 
+\
+
 4.  Seeing there are 32 rows and 11 columns, we can now use the *head()* command to view the first few rows
 
-    ```{r, echo=FALSE}
+    ```{r}
     #first few rows
     head(mtcars)
 
     ```
+
+    \
 
 5.  While *head()* looks at the first few rows, ***tail()*** looks at the last.
 
@@ -56,34 +64,38 @@ ncol(mtcars)
 tail(mtcars)
 ```
 
+\
+
 6.  To find the variable type for each use the *str()* function to list each class type (string, integer, double, factor etc)
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 #variable name, type, count and first few observations
 str(mtcars)
 ```
 
 7.  To generate the summary statistics of each variable, use the *summary()* function to produce statistics such as Minimum, Maximum, Median, Mean and others.
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 #summary statistics of each variable by variable type
 summary(mtcars)
 ```
+
+\
 
 8.  To view relationships (correlation) between each variable, use the *ggcorrplot()* from the ggplot2 library. Pass the mtcars dataset through the correlation *cor()* generate the visualization.
 
     Correlation is measured between +1.0 and -1.0 with positive values at 1 representing a perfect linear relationship and negative values at -1 representing a perfect negative linear relationship. A value of 0 means there is no relationship. **Essentially**, look for the bright red and blue squares to find the variables with the greatest correlation.
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 #visualization to find most related variables
 ggcorrplot::ggcorrplot(cor(mtcars))
 ```
 
-Looking at the graphic above, you can see wt (weight) and mpg (miles per gallon) have a high negative relationship. Let's use these two for the last couple steps...
+Looking at the graphic above, you can see wt (weight) and mpg (miles per gallon) have a high negative relationship. Let's use these two for the last couple steps...\
 
 9.  A simple histogram *hist()* can help visualize the distribution of the data between the two variables, weight and mpg. Older cars did not have the best mpg!
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 #two histograms!
 hist(mtcars$mpg, main = "Histogram of MPG", xlab = "Miles Per Gallon")
 
@@ -91,17 +103,19 @@ hist(mtcars$wt, main = "Histogram of weight", xlab = "Weight in 1k lbs")
 
 ```
 
+\
+
 10. Using the *plot()* function we can create a scatter plot of the two variables, MPG and Weight.
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 plot(mtcars$wt, mtcars$mpg, main = "Scatter Plot of MPG vs Weight", xlab = "Weight (in 1k lbs)", ylab = "Miles Per Gallon")
 ```
 
 Looking at the graph we can see the correlation is negative as the data decreases in MPG as the Weight increases (remember, it was a blue square in the correlation matrix).
 
-11. BONUS! Let's add a trend line comparing the two models...
+11. **BONUS**! Let's add a trend line comparing the two models...
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 plot(mtcars$wt, mtcars$mpg, main = "Scatter Plot of MPG vs Weight", xlab = "Weight (in 1k lbs)", ylab = "Miles Per Gallon")
 
 # create linear model
@@ -111,4 +125,4 @@ model <- lm(mtcars$mpg ~ mtcars$wt)
 abline(model, col = "blue")
 ```
 
-That's it! Thanks for reading and give EDA a try on your favorite dataset in R!
+**That's it!** Thanks for reading and give EDA a try on your favorite dataset in R!

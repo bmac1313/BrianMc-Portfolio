@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -116,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Top 10 starter EDA functions() in R Studio</h1>
+      <h1 class="title">Top 10 Starter EDA Functions() in R Studio</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">R</div>
                 <div class="quarto-category">code</div>
@@ -160,9 +194,16 @@ ul.task-list li input[type="checkbox"] {
 <p>Here, you can see common Exploratory Data Analysis functions used to understand various datasets. We will use the preloaded “mtcars” dataset that is already installed with R Studio.</p>
 <p>The “mtcars” dataset is comprised of 32 automobile models for the year 1973 -1974 with charactersits such as fuel consumption, horsepower and much more (1974 US Motor Trend magazine).</p>
 <p>It is always best practice to load your libraries upfront, we will use ggplot2 for visualizations and</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>
+</p>
 <ol type="1">
 <li><p>Using the <em>?</em> within R Studio will showcase details of the dataset for you. This can be used for any function, not just EDA.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ask away!</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>?mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>starting httpd help server ... done</code></pre>
 </div>
@@ -170,20 +211,33 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="R1.png" class="img-fluid"></p></li>
 <li><p>Load the data via the <em>data()</em> command</p></li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"mtcars"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>
+</p>
 <ol start="3" type="1">
 <li>Examine the number of columns <em>ncol()</em> and rows <em>nrows()</em> of the dataset. This can help determine if the dataset will need to be subdivided (via the subset function) for further analysis.</li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rows and columns count</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 32</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
 </div>
+<p><br>
+</p>
 <ol start="4" type="1">
 <li><p>Seeing there are 32 rows and 11 columns, we can now use the <em>head()</em> command to view the first few rows</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first few rows</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
@@ -193,10 +247,14 @@ Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 </div>
-</div></li>
+</div>
+<p><br>
+</p></li>
 <li><p>While <em>head()</em> looks at the first few rows, <strong><em>tail()</em></strong> looks at the last.</p></li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#last few rows</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                mpg cyl  disp  hp drat    wt qsec vs am gear carb
 Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
@@ -207,10 +265,14 @@ Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
 Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 </div>
 </div>
+<p><br>
+</p>
 <ol start="6" type="1">
 <li>To find the variable type for each use the <em>str()</em> function to list each class type (string, integer, double, factor etc)</li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#variable name, type, count and first few observations</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   32 obs. of  11 variables:
  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
@@ -230,6 +292,8 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 <li>To generate the summary statistics of each variable, use the <em>summary()</em> function to produce statistics such as Minimum, Maximum, Median, Mean and others.</li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summary statistics of each variable by variable type</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg             cyl             disp             hp       
  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
@@ -254,45 +318,63 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
  Max.   :1.0000   Max.   :5.000   Max.   :8.000  </code></pre>
 </div>
 </div>
+<p><br>
+</p>
 <ol start="8" type="1">
 <li><p>To view relationships (correlation) between each variable, use the <em>ggcorrplot()</em> from the ggplot2 library. Pass the mtcars dataset through the correlation <em>cor()</em> generate the visualization.</p>
 <p>Correlation is measured between +1.0 and -1.0 with positive values at 1 representing a perfect linear relationship and negative values at -1 representing a perfect negative linear relationship. A value of 0 means there is no relationship. <strong>Essentially</strong>, look for the bright red and blue squares to find the variables with the greatest correlation.</p></li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualization to find most related variables</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ggcorrplot<span class="sc">::</span><span class="fu">ggcorrplot</span>(<span class="fu">cor</span>(mtcars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Looking at the graphic above, you can see wt (weight) and mpg (miles per gallon) have a high negative relationship. Let’s use these two for the last couple steps…</p>
+<p>Looking at the graphic above, you can see wt (weight) and mpg (miles per gallon) have a high negative relationship. Let’s use these two for the last couple steps…<br>
+</p>
 <ol start="9" type="1">
 <li>A simple histogram <em>hist()</em> can help visualize the distribution of the data between the two variables, weight and mpg. Older cars did not have the best mpg!</li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#two histograms!</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>mpg, <span class="at">main =</span> <span class="st">"Histogram of MPG"</span>, <span class="at">xlab =</span> <span class="st">"Miles Per Gallon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>wt, <span class="at">main =</span> <span class="st">"Histogram of weight"</span>, <span class="at">xlab =</span> <span class="st">"Weight in 1k lbs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><br>
+</p>
 <ol start="10" type="1">
 <li>Using the <em>plot()</em> function we can create a scatter plot of the two variables, MPG and Weight.</li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg, <span class="at">main =</span> <span class="st">"Scatter Plot of MPG vs Weight"</span>, <span class="at">xlab =</span> <span class="st">"Weight (in 1k lbs)"</span>, <span class="at">ylab =</span> <span class="st">"Miles Per Gallon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Looking at the graph we can see the correlation is negative as the data decreases in MPG as the Weight increases (remember, it was a blue square in the correlation matrix).</p>
 <ol start="11" type="1">
-<li>BONUS! Let’s add a trend line comparing the two models…</li>
+<li><strong>BONUS</strong>! Let’s add a trend line comparing the two models…</li>
 </ol>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg, <span class="at">main =</span> <span class="st">"Scatter Plot of MPG vs Weight"</span>, <span class="at">xlab =</span> <span class="st">"Weight (in 1k lbs)"</span>, <span class="at">ylab =</span> <span class="st">"Miles Per Gallon"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create linear model</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mtcars<span class="sc">$</span>mpg <span class="sc">~</span> mtcars<span class="sc">$</span>wt)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a trendline to the scatterplot, color blue to match previous graphic</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>That’s it! Thanks for reading and give EDA a try on your favorite dataset in R!</p>
+<p><strong>That’s it!</strong> Thanks for reading and give EDA a try on your favorite dataset in R!</p>
 
 
 
