@@ -51,7 +51,7 @@ ncol(mtcars)
 
 5.  While *head()* looks at the first few rows, ***tail()*** looks at the last.
 
-```{r, echo=FALSE}
+```{r}
 #last few rows
 tail(mtcars)
 ```
