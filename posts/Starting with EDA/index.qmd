@@ -1,5 +1,5 @@
 ---
-title: "Top 10 starter EDA functions() in R Studio"
+title: "Top 10 Starter EDA Functions() in R Studio"
 author: "Brian McNamara"
 date: "2023-12-03"
 categories: [R, code, EDA, visualization]
@@ -12,14 +12,14 @@ The "mtcars" dataset is comprised of 32 automobile models for the year 1973 -197
 
 It is always best practice to load your libraries upfront, we will use ggplot2 for visualizations and
 
-```{r, echo=FALSE}
+```{r echo=TRUE}
 
 library(ggplot2)
 ```
 
 1.  Using the *?* within R Studio will showcase details of the dataset for you. This can be used for any function, not just EDA.
 
-    ```{r, echo=FALSE}
+    ```{r, echo=TRUE}
     #ask away!
     ?mtcars
     ```
@@ -28,7 +28,7 @@ library(ggplot2)
 
 2.  Load the data via the *data()* command
 
-```{r, echo=FALSE}
+```{r echo=TRUE}
 #load data
 data("mtcars")
 ```
